@@ -1,0 +1,22 @@
+version: '3'
+services:
+  digdag:
+    environment:
+      ENCRYPTION_KEY: MDEyMzQ1Njc4OTAxMjM0NQ== # echo -n "0123456789012345"
+    build:
+      context: .
+    image: mydigdag
+    ports:
+      - 65432:65432
+    volumes:
+      - .:/src
+    depends_on:
+      - postgres
+    command: ["server", "-c", "/src/server.properties"]
+  postgres:
+    image: postgres:13.3-alpine
+    environment:
+      POSTGRES_DB: digdag
+      POSTGRES_PASSWORD: pg_digdag
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
