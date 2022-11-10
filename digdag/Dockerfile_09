@@ -1,6 +1,6 @@
-FROM openjdk:11.0-jdk-slim-buster
+FROM eclipse-temurin:8u352-b08-jdk
 
-ENV DIGDAG_VERSION=0.10.4
+ENV DIGDAG_VERSION=0.9.41
 WORKDIR /src
 
 RUN apt-get update \
